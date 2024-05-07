@@ -33,7 +33,11 @@ class ImageRecovery(torch.nn.Module):
         return self.rec_image
 
 
-device = torch.device("cuda:0")
+if torch.cuda.is_available():
+    device = torch.device("cuda:0")  # Set the default device to the GPU
+else:
+    device = torch.device("cpu")  # Set the default device to the CPU
+
 
 _rgb_rec7092ycbcr = torch.as_tensor([[0.298999944347618, 0.587000125991912, 0.113999929660470],\
   [-0.168735860241319,  -0.331264179453675,   0.500000039694994],\
